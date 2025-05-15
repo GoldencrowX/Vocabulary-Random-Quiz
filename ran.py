@@ -31,7 +31,9 @@ def index():
         user_input = request.form['user_input'].strip().lower()
         answered = session['answered_correct'][level]
 
-        if user_input == correct_meaning:
+        correct_list = [m.strip().lower() for m in correct_meaning.split(',')]
+
+        if user_input in correct_list:
             result = 'Correct!'
             if vocab not in answered:
                 answered.append(vocab)
