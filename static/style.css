@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+body *:lang(th) {
+    font-family: 'Prompt', sans-serif;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background: black;
+    /* backdrop-filter: blur(20px); */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 2em;
+    color: white;
+    user-select: none;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /* backdrop-filter: blur(20px); */
+    background-color: black;
+    min-height: 100px;
+    box-shadow: 0px 8px 16px gray;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 1px 10px;
+    color: white;
+    text-decoration: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh; 
+    background: url('IMG_3172.JPG') no-repeat;
+    background-size: cover; 
+    background-position: center; 
+}
+
+.wrapper {
+    position: relative;
+    width: 550px;
+    height: 550px;
+    background: transparent;
+    border: 2px solid rgba(128 128 128 0.5);
+    outline: 3px solid gray;
+    border-radius: 20px;
+    background-color: white;
+    /* backdrop-filter: blur(20px); */
+    box-shadow: 0 0 30px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.wrapper .content {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .section {
+    margin: 20px;
+}
+
+.wrapper h2 {
+    font-size: 2.5em;
+    color: black;
+    text-align: center;
+    margin: 30px 0 0;
+}
+
+.label-word {
+    font-size: 1em;
+    font-weight: 700;
+}
+.label-vocab{
+    font-size: 2em;
+    font-weight: 700;
+    color: red;
+}
+
+.label-score {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.value-score{
+    font-size: 1.5em;
+    font-weight: 700;
+    color: red;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:1em;
+    font-weight: 700;
+}
+
+input {
+    width: 100%;
+    height: 45px;
+    border-radius: 6px;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    text-align: center;
+    margin: 5px 0 20px;
+}
+
+.check {
+    width: 100%;
+    height: 45px;
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    background-color: black;
+    color: white; 
+}
+
+.check:hover {
+    background-color: gray;
+    color: black;
+}
+
+.result {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    margin: 30px 0 30px;
+}
+
+.renew {
+    width: 100%;
+    height: 45px;
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    background-color: red;
+    color: white;
+}
+
+.renew:hover {
+    background-color: orange;
+    color: black;
+}
+
+@keyframes rainbowFlowRight {
+    0% {
+        background-position: 200% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.congrats {
+    font-size: 1.5em;
+    font-weight: 700;
+    text-align: center;
+    white-space: pre-line;
+    margin: 30px 0 30px;
+
+    background: linear-gradient(
+        90deg,
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet,
+        red
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    animation: rainbowFlowRight 3s linear infinite;
+}
+
+.final {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: black;
+    text-align: center;
+}
+
+.value-final {
+    font-size: 1.8em;
+    color: red;
+}
+
+.play {
+    width: 100%;
+    height: 45px;
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    background-color: red;
+    color: white;
+    margin: 30px 0 0;
+}
+
+.play:hover {
+    background-color: orange;
+    color: black;
+}
+
+.wrapper:has(.congrats) {
+    width: 550px;
+    height: 400px;
+}

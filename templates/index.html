@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Random Vocab</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="logo">Random Vocab</h1>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">Vocabulary</a>
+
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Game</a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('index', level='A1') }}">A1</a>
+                    <a href="{{ url_for('index', level='A2') }}">A2</a>
+                    <a href="{{ url_for('index', level='B1') }}">B1</a>
+                    <a href="{{ url_for('index', level='B2') }}">B2</a>
+                    <a href="{{ url_for('index', level='C1') }}">C1</a>
+                    <a href="{{ url_for('index', level='C2') }}">C2</a>
+                </div>
+            </div>
+
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <div class="content">
+            <h2>Level: {{ level }}</h2>
+
+            {% if vocab %}
+                <div class="section">
+                    <span class="label-word">Word:</span>
+                    <span class="label-vocab">{{ vocab }}</span>
+                </div>
+                
+                <div class="section">
+                    <span class="label-score">Score:</span>
+                    <span class="value-score">{{ score }}</span>
+                </div>
+
+                <form action="{{ url_for('index', level=level) }}" method="POST">
+                    <input type="hidden" name="vocab" value="{{ vocab }}">
+                    <input type="hidden" name="correct_meaning" value="{{ correct_meaning }}">
+
+                    <div class="section">
+                        <label for="user_input">Your Meaning</label>
+                        <input type="text" name="user_input" id="user_input" required autocomplete="off">
+                        <button type="submit" class="check">Check</button>
+                    </div>
+                </form>
+
+                <div class="section">
+                    {% if result %}
+                        {% if 'Congratulations' in result %}
+                            <p><strong>{{ result }}</strong></p>
+                        {% else %}
+                            <div class="result">
+                                <p>{{ result }}</p>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+                <div class="section">
+                   <form action="{{ url_for('reset', level=level) }}" method="GET">
+                        <button type="submit" class="renew">Renew</button>
+                    </form>
+                </div>
+
+            {% else %}
+                <div class="section">
+                    <p class="congrats">{{ result }}</p>
+                    <p class="final">
+                        <strong class="label-final">Final Score:</strong>
+                        <span class="value-final">{{ score }}</span>
+                    </p>
+                    <form action="{{ url_for('reset', level=level) }}" method="get">
+                        <button type="submit" class="play">Play Again</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
