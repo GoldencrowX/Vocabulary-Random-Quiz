@@ -12,10 +12,10 @@
 <body>
     <header>
         <h1 class="logo">Random Vocab</h1>
-        <nav class="navigation">
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        <nav class="navigation" id="navigation">
             <a href="#">Home</a>
             <a href="#">Vocabulary</a>
-
             <div class="dropdown">
                 <a href="#" class="dropbtn">Game</a>
                 <div class="dropdown-content">
@@ -25,12 +25,11 @@
                     <a href="{{ url_for('index', level='B2') }}">B2</a>
                     <a href="{{ url_for('index', level='C1') }}">C1</a>
                     <a href="{{ url_for('index', level='C2') }}">C2</a>
+                    </div>
                 </div>
-            </div>
-
             <a href="#">Contact</a>
         </nav>
-    </header>
+    </header> 
 
     <div class="wrapper">
         <div class="content">
@@ -40,6 +39,8 @@
                 <div class="section">
                     <span class="label-word">Word:</span>
                     <span class="label-vocab">{{ vocab }}</span>
+                    <span class="label-pastof">({{ part_of_speech }})</span>
+
                 </div>
                 
                 <div class="section">
@@ -60,11 +61,13 @@
 
                 <div class="section">
                     {% if result %}
-                        {% if 'Congratulations' in result %}
-                            <p><strong>{{ result }}</strong></p>
+                        {% if result == 'Correct!' %}
+                            <p class="result">{{ result }}</p>
                         {% else %}
                             <div class="result">
-                                <p>{{ result }}</p>
+                                <span class="incorrect-label">Incorrect!</span> The correct word for  
+                                <span class="correct-vocab">{{ prev_vocab }}</span> is: 
+                                <span class="correct-meaning">{{ prev_meaning }}</span>
                             </div>
                         {% endif %}
                     {% endif %}
@@ -90,6 +93,24 @@
             {% endif %}
         </div>
     </div>
-</body>
 
+<!-- <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
+    const navigation = document.getElementById("navigation");
+    const dropdownBtn = document.querySelector(".dropbtn");
+    const dropdown = document.querySelector(".dropdown");
+
+    menuToggle.addEventListener("click", function () {
+        navigation.classList.toggle("show");
+    });
+
+    dropdownBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        dropdown.classList.toggle("active");
+    });
+});
+</script> -->
+
+</body>
 </html>

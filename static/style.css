@@ -7,8 +7,19 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('IMG_3172.JPG') no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 body *:lang(th) {
@@ -20,9 +31,8 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 100px;
-    background: black;
-    /* backdrop-filter: blur(20px); */
+    padding: 20px 5%;
+    background: rgb(20, 20, 20);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,13 +45,17 @@ header {
     user-select: none;
 }
 
+/* .navigation {
+    display: flex;
+    align-items: center;
+} */
+
 .navigation a {
-    position: relative;
     font-size: 1.1em;
     color: white;
     text-decoration: none;
     font-weight: 500;
-    margin: 20px;
+    margin:0 20px;
 }
 
 .dropdown {
@@ -56,42 +70,35 @@ header {
 .dropdown-content {
     display: none;
     position: absolute;
-    /* backdrop-filter: blur(20px); */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    border-radius: 6px;
     background-color: black;
-    min-height: 100px;
+    min-width: 100px;
     box-shadow: 0px 8px 16px gray;
+    margin: 10px 0 0;
     z-index: 1;
 }
 
 .dropdown-content a {
     display: block;
-    padding: 1px 10px;
+    padding: 10px 20px;
     color: white;
     text-decoration: none;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    min-height: 100vh; 
-    background: url('IMG_3172.JPG') no-repeat;
-    background-size: cover; 
-    background-position: center; 
-}
-
 .wrapper {
     position: relative;
-    width: 550px;
-    height: 550px;
-    background: transparent;
-    border: 2px solid rgba(128 128 128 0.5);
+    width: 90%;
+    max-width: 550px;
+    padding: 2%;
+    background-color: white;
+    border: 2px solid rgba(128, 128, 128, 0.5);
     outline: 3px solid gray;
     border-radius: 20px;
-    background-color: white;
-    /* backdrop-filter: blur(20px); */
     box-shadow: 0 0 30px white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: width 0.5s ease, height 0.5s ease;
@@ -99,7 +106,6 @@ body {
 
 .wrapper .content {
     width: 100%;
-    padding: 40px;
 }
 
 .wrapper .section {
@@ -113,26 +119,26 @@ body {
     margin: 30px 0 0;
 }
 
-.label-word {
+.label-word, .label-score, .label-pastof {
     font-size: 1em;
     font-weight: 700;
+
 }
 .label-vocab{
     font-size: 2em;
     font-weight: 700;
     color: red;
-}
-
-.label-score {
-    font-size: 1em;
-    font-weight: 700;
+    user-select: none;
+    margin: 0 10px 0;
 }
 
 .value-score{
     font-size: 1.5em;
     font-weight: 700;
     color: red;
+    margin: 0 10px 0;
 }
+
 
 label {
     display: flex;
@@ -150,10 +156,10 @@ input {
     font-size: 1em;
     font-weight: 500;
     text-align: center;
-    margin: 5px 0 20px;
+    margin: 5px 0 30px;
 }
 
-.check {
+.check, .renew {
     width: 100%;
     height: 45px;
     font-size: 1em;
@@ -161,8 +167,12 @@ input {
     border: none;
     border-radius: 6px;
     outline: none;
+    cursor: pointer;
+}
+
+.check {
     background-color: black;
-    color: white; 
+    color: white;
 }
 
 .check:hover {
@@ -170,28 +180,36 @@ input {
     color: black;
 }
 
-.result {
-    font-family: 'Prompt', sans-serif;
-    font-size: 1em;
-    font-weight: 500;
-    margin: 30px 0 30px;
-}
-
 .renew {
-    width: 100%;
-    height: 45px;
-    font-size: 1em;
-    font-weight: 500;
-    border: none;
-    border-radius: 6px;
-    outline: none;
     background-color: red;
     color: white;
+    margin: 10px 0 0;
 }
 
 .renew:hover {
     background-color: orange;
     color: black;
+}
+
+/* .correct-message {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    /* text-align: center; */
+    /* margin: 25px 0 0;
+} */ 
+
+.result {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    /* text-align: center; */
+    margin: 25px 0 0;
+}
+
+.correct-vocab, .correct-meaning {
+    color: red;
+    text-decoration: underline;
 }
 
 @keyframes rainbowFlowRight {
@@ -226,7 +244,6 @@ input {
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-
     animation: rainbowFlowRight 3s linear infinite;
 }
 
@@ -261,6 +278,102 @@ input {
 }
 
 .wrapper:has(.congrats) {
-    width: 550px;
-    height: 400px;
+    /* width: 550px; */
+    max-width: 550;
+    /* height: 400px; */
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    .logo {
+        display: block;
+        position: absolute;
+        top: 25%;
+        font-size: 1em;
+        /* background-color: blue; */
+    }
+
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 5px;
+        right: 20px;
+        font-size: 20px;
+        z-index: 100;
+        cursor: pointer;
+    }
+
+    .navigation {
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -63%;
+        width: 63%;
+        height: 100vh;
+        background-color: red;
+        padding-top: 70px;
+        transition: right 0.3s ease-in-out;
+        z-index: 98;
+}
+
+    .navigation.show {
+        right: 0;
+        pointer-events: auto;
+    }
+
+    .navigation a {
+        display: block;
+        padding: 16px 33px;
+        margin: 0;
+        font-size: 1.2em;
+        font-weight: 900;
+  }
+    .dropdown:hover .dropdown-content {
+        display: none;
+}
+
+    .dropdown-content {
+        display: none;
+        flex-direction: column;
+        padding-left: 24px;
+        box-shadow: none;
+  }
+
+    .dropdown.active .dropdown-content {
+        display: flex;
+  }
+  
+    .dropdown-content a {
+        padding: 12px 24px;
+        font-size: 1em;
+  }
+
+
+}   
+
+
+@media (max-width: 480px) {
+    html {
+        font-size: 16px;
+    }
+
+    .wrapper {
+        padding: 20px;
+    }
 }
