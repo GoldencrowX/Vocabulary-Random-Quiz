@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 import pandas as pd
 import random
-# from livereload import Server
+from livereload import Server
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
@@ -12,7 +12,6 @@ def index():
     df_all = pd.read_csv('Vocabulary.csv')
     df = df_all[df_all['Level'] == level]
 
-    # ตั้งค่า session
     session.setdefault('score', {})
     session['score'].setdefault(level, 0)
 
@@ -54,16 +53,13 @@ def index():
 
         session.modified = True
 
-        # จดจำคำที่ตอบรอบก่อนเพื่อแสดงในหน้าถัดไป
         previous_vocab = vocab
         previous_meaning = correct_meaning
 
-    # เตรียมคำใหม่
     answered = session['answered_correct'][level]
     pending_retry = session['pending_retry'][level]
     last_vocab = session['last_vocab'][level]
 
-    # เลือกคำที่ยังไม่ได้ตอบถูก และยังไม่อยู่ใน pending_retry
     remaining = df[~df['Vocab'].isin(answered + pending_retry)]
 
     all_candidates = df[~df['Vocab'].isin(answered + pending_retry)]
@@ -79,7 +75,6 @@ def index():
         vocab = random.choice(pending_retry)
         row = df[df['Vocab'] == vocab].iloc[0]
     else:
-    # จบเกม
         return render_template('index.html',
                            vocab='',
                            correct_meaning='',
@@ -95,7 +90,6 @@ def index():
     correct_meaning = str(row['Meaning']).strip().lower()
     part_of_speech = str(row.get('Part of Speech', 'N/A')).strip()
 
-    # บันทึกคำที่เพิ่งแสดงล่าสุดเพื่อป้องกันซ้ำ
     session['last_vocab'][level] = new_vocab
     session.modified = True
 
@@ -123,6 +117,6 @@ def reset(level):
     session.modified = True
     return redirect(url_for('index', level=level))
 
-# if __name__ == '__main__':
-#     server = Server(app.wsgi_app)
-#     server.serve(debug=True)
+if __name__ == '__main__':
+    server = Server(app.wsgi_app)
+    server.serve(debug=True)

@@ -37,18 +37,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdownBtn = document.querySelector(".dropbtn");
   const dropdown = document.querySelector(".dropdown");
 
-  // เปิด/ปิดเมนูหลัก
   menuToggle.addEventListener("click", function () {
     navigation.classList.toggle("show");
   });
 
-  // เปิด/ปิดเมนูย่อย Game
   dropdownBtn.addEventListener("click", function (e) {
     e.preventDefault();
     dropdown.classList.toggle("active");
   });
 
-  // ปิดเมนูหลักเมื่อคลิกข้างนอก (มือถือ)
   document.addEventListener("click", function (e) {
     if (!navigation.contains(e.target) && e.target !== menuToggle) {
       navigation.classList.remove("show");
@@ -58,13 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.onload = function () {
-        const input = document.getElementById('user_input');
-        if (input) {
-            input.focus();
-        }
+  const input = document.getElementById('user_input');
+    if (input) {
+      input.focus();
     }
+}
 
-
+document.addEventListener('DOMContentLoaded', function () {
+  const el = document.querySelector('.label-vocab');
+  el.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+  });
+});
 
 
 

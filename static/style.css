@@ -124,12 +124,16 @@ header {
     font-weight: 700;
 
 }
+
 .label-vocab{
     font-size: 2em;
     font-weight: 700;
     color: red;
-    user-select: none;
     margin: 0 10px 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .value-score{
